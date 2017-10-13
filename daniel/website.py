@@ -33,7 +33,7 @@ def num_of_yeses(person):
 
 
 def admirer_plot(person, num_neighbours):
-	df = pd.read_csv('../data/Speed Dating Data.csv')
+	df = pd.read_csv('Speed Dating Data.csv')
 
 	INFO = ['iid', 'age', 'gender', 'dec_o']
 	ATTS = ['attr_o', 'sinc_o', 'intel_o', 'fun_o', 'amb_o']
