@@ -152,10 +152,24 @@ def admirer_plot(person, num_neighbours):
 	y = difference_ser
 	fig, ax = plt.subplots()
 	fig.set_size_inches(11.7, 7.5)
-	sns.barplot(x, y, ax=ax)
+
+	sns.set(style="whitegrid", color_codes=True)
+	data = difference_ser
+	pal = sns.color_palette("Blues_d", len(data))
+	rank = data.argsort().argsort()
+
+	sns.barplot(x, y, ax=ax, palette=np.array(pal[::-1])[rank])
+
 	ax.set_title('What kind of people do you attract?', fontsize=24)
 	xticks = ax.set_xticklabels(labels=x, rotation=90, fontsize=20)
 	ax.set_ylabel("Admirers' attributes - mean attributes", fontsize=16)
+
+	# data = titanic.groupby("deck").size()   # data underlying bar plot in question
+
+	# pal = sns.color_palette("Greens_d", len(data))
+	# rank = data.argsort().argsort()   # http://stackoverflow.com/a/6266510/1628638
+	# sns.barplot(x=data.index, y=data, palette=np.array(pal[::-1])[rank])
+
 	plt.tight_layout()
 	fig.savefig('barplot.png')
 
@@ -168,9 +182,9 @@ def admirer_plot(person, num_neighbours):
 gender = 1
 age = 30
 attractiveness = 8
-sincerity = 6
-intelligence = 5
-fun = 6
+sincerity = 9
+intelligence = 7
+fun = 4
 ambitious = 6
 
 # This takes the above information and gets it in the right form
@@ -179,4 +193,5 @@ you = collect_info(gender, age, attractiveness, sincerity, intelligence, fun, am
 yeses = num_of_yeses(you)
 # print "yeses: ", yeses
 # This returns nothing but saves 'barplot.png' to this directory
+# Note. This function requires the file 'Speed Dating Data.csv' to be in this directory
 admirer_plot(you, num_neighbours=3)
