@@ -29,7 +29,7 @@ def num_of_yeses(person):
 		yeses = 1 / (1 + np.exp(-(
 			0.54519696*person['attr_o'] - 0.15007122*person['sinc_o'] + 0.2861754*person['fun_o']
 			- 4.56875692)))
-	return np.round(yeses.values[0]*20, 2)
+	return int(yeses.values[0]*100)
 
 
 def admirer_plot(person, num_neighbours):
@@ -145,13 +145,13 @@ def admirer_plot(person, num_neighbours):
 		'exercise': 'Exercise', 'dining': 'Dining', 'museums': 'Museums', 'art': 'Art', 
 		'hiking': 'Hiking', 'gaming': 'Gaming', 'clubbing': 'Clubbing', 'reading': 'Reading', 
 		'tv': 'TV', 'theater': 'Theater', 'movies': 'Movies', 'concerts': 'Concerts', 
-		'music': 'Music', 'shopping': 'Shopping', 'yoga': 'Yoga', 'age': 'Age (Normed to 1-10)'}
+		'music': 'Music', 'shopping': 'Shopping', 'yoga': 'Yoga', 'age': 'Age'}
 	difference_ser.rename(index=real_names, inplace=True)
 
 	x = difference_ser.index
 	y = difference_ser
 	fig, ax = plt.subplots()
-	fig.set_size_inches(11.7, 7.5)
+	fig.set_size_inches(13.7, 7.5)
 
 	sns.set(style="whitegrid", color_codes=True)
 	data = difference_ser
@@ -162,7 +162,7 @@ def admirer_plot(person, num_neighbours):
 
 	ax.set_title('What kind of people do you attract?', fontsize=24)
 	xticks = ax.set_xticklabels(labels=x, rotation=90, fontsize=20)
-	ax.set_ylabel("Admirers' attributes - mean attributes", fontsize=16)
+	ax.set_ylabel("Admirers' Attributes", fontsize=20)
 
 	# data = titanic.groupby("deck").size()   # data underlying bar plot in question
 
@@ -179,13 +179,13 @@ def admirer_plot(person, num_neighbours):
 	/											/
 	/////////////////////////////////////////////
 """
-gender = 1
-age = 30
+gender = 0
+age = 25
 attractiveness = 8
 sincerity = 9
-intelligence = 7
-fun = 4
-ambitious = 6
+intelligence = 8
+fun = 6
+ambitious = 8
 
 # This takes the above information and gets it in the right form
 you = collect_info(gender, age, attractiveness, sincerity, intelligence, fun, ambitious)
